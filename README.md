@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/botbuilder-wit.svg)](https://badge.fury.io/js/botbuilder-wit)
 [![Build Status](https://travis-ci.org/sebsylvester/botbuilder-wit.svg?branch=master)](https://travis-ci.org/sebsylvester/botbuilder-wit)
-[![codecov](https://codecov.io/gh/sebsylvester/botbuilder-wit/branch/master/graph/badge.svg)](https://codecov.io/gh/sebsylvester/botbuilder-wit)
+[![codecov](https://codecov.io/gh/sebsylvester/botbuilder-wit/branch/master/graph/badge.svg)](https://codecov.io/gh/sebsylvester/botbuilder-wit) [![Greenkeeper badge](https://badges.greenkeeper.io/sebsylvester/botbuilder-wit.svg)](https://greenkeeper.io/)
 
 Node.js module that provides [Wit.ai](https://wit.ai) NLP integration for the [Microsoft Bot Builder SDK](https://dev.botframework.com/), with built-in support for caching with Redis and Memcached.
 
