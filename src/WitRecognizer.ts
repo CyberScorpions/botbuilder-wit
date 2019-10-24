@@ -21,21 +21,24 @@ import {
  */
 export class WitRecognizer {
     public witClient: Wit;
+    public witClients:  { [name: string]: Wit };
     public cacheAdapter: CacheAdapter = null;
 
     /**
      * Creates an instance of WitRecognizer.
-     * @param accessToken {string} API token from Wit.ai
+     * @param accessTokens {Object} API tokens from Wit.ai
      * @param options {IOptions}
      */
-    constructor(accessToken: string, options: IOptions = {}) {
+    constructor(accessTokens: { [name : string] : string}, options: IOptions = {}) {
         const { cache } = options;
 
-        if (!accessToken || typeof accessToken !== "string") {
+        if (!accessTokens || typeof accessTokens !== "object") {
             const msg = "Constructor must be invoked with an accessToken of type \"string\"";
             throw new Error(msg);
         }
-        this.witClient = new Wit({ accessToken });
+        this.witClients = Object.assign({}, ...Object.keys(accessTokens).map(k => ({[k]: new Wit({ accessToken : accessTokens[k] })})));
+
+        // this.witClient = new Wit({ accessToken });
 
         // Evaluate the type of the cache client
         // Instantiate a corresponding adapter
@@ -78,7 +81,9 @@ export class WitRecognizer {
             const utterance = context.message.text;
 
             // Send a request to Wit.ai
-            this.witClient.message(utterance, {} as WitContext)
+            const locality = context.locale.substring(0,2)
+            let witClient = this.witClients[locality] ? this.witClients[locality] : this.witClients["en"]
+            witClient.message(utterance, {} as WitContext)
                 .then((response: IWitResults) => {
                     // Check if Wit.ai responded with an error
                     if (response.error) {
@@ -110,11 +115,11 @@ export class WitRecognizer {
                         // Otherwise, the Bot Builder SDK will trigger the dialog's default handler
                         // with a default result object => { score: 0.0, intent: null }.
                         // Any other entities will not be included. The action below prevents this behavior.
-                        // Setting score to 0.1 lets the intent still be triggered but keeps it from
+                        // Setting score to 0.35 lets the intent still be triggered but keeps it from
                         // stomping on other models.
                         if (!result.intent) {
                             result.intent = "none";
-                            result.score = 0.1;
+                            result.score = 0.35;
                         }
 
                         result.entities = [];

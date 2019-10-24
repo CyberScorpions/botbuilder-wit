@@ -1,7 +1,7 @@
 {
-  "name": "botbuilder-wit",
-  "version": "2.0.10",
-  "description": "Provides Wit.ai NLP integration for the Microsoft Bot Builder SDK. Supports caching with Redis and Memcached.",
+  "name": "botbuilder-wit-multi",
+  "version": "1.0.0",
+  "description": "Provides Wit.ai NLP integration for the Microsoft Bot Builder SDK. Supports caching with Redis and Memcached - based on botbuilderwit",
   "main": "lib/WitRecognizer",
   "types": "lib/WitRecognizer",
   "scripts": {
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sebsylvester/botbuilder-wit.git"
+    "url": "https://github.com/amitbend/botbuilder-wit.git"
   },
   "keywords": [
     "botbuilder",
@@ -27,17 +27,17 @@
     "wit.ai",
     "nlp"
   ],
-  "author": "Sebastian Sylvester",
+  "author": "Amit Bendor",
   "license": "MIT",
-  "bugs": "https://github.com/sebsylvester/botbuilder-wit/issues",
-  "homepage": "https://github.com/sebsylvester/botbuilder-wit",
+  "bugs": "https://github.com/amitbend/botbuilder-wit/issues",
+  "homepage": "https://github.com/amitbend/botbuilder-wit",
   "dependencies": {
     "node-wit": "^5.0.0"
   },
   "devDependencies": {
     "@types/chai": "^4.1.2",
     "@types/mocha": "^2.2.48",
-    "@types/node": "^9.4.6",
+    "@types/node": "^9.6.52",
     "@types/node-wit": "^4.2.2",
     "@types/sinon": "^4.3.0",
     "chai": "^4.1.2",

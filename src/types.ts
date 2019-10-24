@@ -23,6 +23,7 @@ export interface IEntity {
 // Type of the first argument of the recognize method. Contains the message text.
 export interface IRecognizeContext {
     message: { text: string };
+    locale : string;
 }
 
 // Type of the second argument of the recognize method. Contains the processed result.
