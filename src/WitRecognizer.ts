@@ -78,7 +78,15 @@ export class WitRecognizer {
     public recognize(context: IRecognizeContext, done: (err: Error, result: IIntentRecognizerResult) => void) {
         const result = { score: 0.0, intent: null } as IIntentRecognizerResult;
         if (context && context.message && context.message.text) {
-            const utterance = context.message.text;
+            let utterance = context.message.text;
+            try{
+                // preprocess
+                utterance = utterance.replace(/([0-9]+)([a-z])/gi, '$1 $2');
+                utterance = utterance.replace(/([a-z]+)([0-9])/gi, '$1 $2')
+                utterance = utterance.replace(",","");
+            } catch(e){
+                console.error('error while preproccessing text to wit',e)
+            }
 
             // Send a request to Wit.ai
             const locality = context.locale.substring(0,2)
